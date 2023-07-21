@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from rabbitmq_helper import RabbitMQHelper
+from rabbitmq_helper import rabbitmq
 import json
 
 app = FastAPI()
@@ -11,7 +11,7 @@ def callback(ch, method, properties, body):
     print(body)
     
 def main():
-    RabbitMQHelper.consume_message(callback = callback)
+    rabbitmq.consume_message(callback = callback)
 
 @app.on_event("startup")
 def startup_event():
