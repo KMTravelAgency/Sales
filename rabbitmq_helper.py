@@ -17,13 +17,13 @@ class RabbitMQHelper:
         url = os.environ["RABBITMQ_URL"]
         self.__connection = pika.BlockingConnection(pika.ConnectionParameters(url))
 
-        def __create_channel(self) -> pika.BlockingConnection:
-            channel = self.__connection.channel()
-            return channel
+    def __create_channel(self) -> pika.BlockingConnection:
+        channel = self.__connection.channel()
+        return channel
     
     def __create_queue(self) -> None:
         channel = self.__create_channel()
-        channel.queue_declare(queue=self.QUEUE_NAME)
+        channel.queue_declare(queue=self.QUEUE_NAME, durable=True)
 
     def consume_message(self, callback: Callable) -> None:
 
