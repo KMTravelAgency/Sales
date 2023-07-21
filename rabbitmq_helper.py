@@ -10,7 +10,7 @@ load_dotenv()
 
 class RabbitMQHelper:
 
-    QUEUE_NAME = "contract_queue"
+    QUEUE_NAME = "product_queue"
 
     def __init__(self) -> None:
 
